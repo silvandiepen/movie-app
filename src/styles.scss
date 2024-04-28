@@ -1,1 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import "./assets/style/reset.scss";
+
+body,
+html {
+  margin: 0;
+}
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  scroll-behavior: smooth;
+}
+
+$colors: (
+  dark: #080f1b,
+  light: #fff,
+  accent-dark: #000000,
+  accent-light: #dae8ec,
+  primary: #a847e4,
+  secondary: #71cae9,
+  tertiary: #efff79,
+  quaternary: #ff5ca0,
+);
+
+
+@function values($color) {
+  @return #{red(map-get($colors, $color))}, #{green(map-get($colors, $color))},
+    #{blue(map-get($colors, $color))};
+}
+
+@function darkOrLight($color) {
+  @return if(lightness($color) > 50, "dark", "light");
+}
+
+@mixin darkModeBase {
+  --background: var(--dark);
+  --background-text: var(--light);
+  --background-rgb: var(--dark-rgb);
+  --foreground: var(--light);
+  --foreground-text: var(--dark);
+  --foreground-rgb: var(--light-rgb);
+  --accent: var(--accent-dark);
+  --accent-rgb: var(--accent-dark-rgb);
+  --accent-text: var(--accent-dark-text);
+}
+@mixin lightModeBase {
+  --background: var(--light);
+  --background-text: var(--dark);
+  --background-rgb: var(--light-rgb);
+  --foreground: var(--dark);
+  --foreground-text: var(--light);
+  --foreground-rgb: var(--dark-rgb);
+  --accent: var(--accent-light);
+  --accent-rgb: var(--accent-light-rgb);
+  --accent-text: var(--accent-light-text);
+}
+:root {
+  @each $color, $value in $colors {
+    --#{$color}: #{$value};
+    --#{$color}-rgb: #{values($color)};
+    --#{$color}-r: #{red($value)};
+    --#{$color}-g: #{green($value)};
+    --#{$color}-b: #{blue($value)};
+    --#{$color}-h: #{hue($value)};
+    --#{$color}-s: #{saturation($value)};
+    --#{$color}-l: #{lightness($value)};
+    --#{$color}-text: var(--#{darkOrLight($value)});
+  }
+
+  --space: 1em;
+  --spacing: clamp(2em, 8vw, 6em);
+  --border-radius: 0.5em;
+  --spacing: clamp(2em, 8vw, 6em);
+  --bezier: cubic-bezier(0, 0.75, 0.5, 1.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include darkModeBase();
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    @include lightModeBase();
+  }
+}
+[data-color-mode="dark"] {
+  @include darkModeBase();
+}
+[data-color-mode="light"] {
+  @include lightModeBase();
+}

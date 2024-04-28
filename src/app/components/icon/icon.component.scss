@@ -1,0 +1,12 @@
+.icon {
+  width: 1em;
+  height: 1em;
+  svg {
+    display: block; 
+    rect,
+    circle,
+    path {
+      fill: currentColor;
+    }
+  }
+}

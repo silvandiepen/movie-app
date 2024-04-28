@@ -1,0 +1,7 @@
+<div [class]="bemm()">
+  <ul [class]="bemm('list')">
+    <li [class]="bemm('item')" *ngFor="let movie of movies">
+      {{ movie.name }} - {{ movie.genre }}
+    </li>
+  </ul>
+</div>

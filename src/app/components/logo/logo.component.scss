@@ -1,0 +1,14 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25em;
+  width: fit-content;
+  gap: .25em; 
+  strong{
+    font-weight: 700;
+  }
+    &__icon{
+        transform: rotate(-5deg);
+    }
+}

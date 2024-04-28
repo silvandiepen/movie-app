@@ -1,0 +1,10 @@
+.header{
+    padding: var(--space);
+    background-color: rgba(var(--foreground-rgb),.1);
+    color: var(--foreground);
+    margin: var(--space)  calc(var(--spacing) - var(--space));
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
