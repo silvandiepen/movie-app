@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { useBemm } from "bemm";
 import { MovieService } from '../../services/movie.service';
 
+
 @Component({
   standalone: true,
   selector: 'movie-list',
@@ -16,11 +17,8 @@ export class MovieListComponent implements OnInit {
   constructor(private movieService: MovieService) {}
 
   ngOnInit() {
-    this.movieService.movies.subscribe(movies => {
-      this.movies = movies;
-    });
-
-    this.movieService.fetchMovies('');
+  
+    this.movies = this.movieService.getMovies();  
   }
 
 }
