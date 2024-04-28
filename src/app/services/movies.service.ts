@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment.dev';
+
 import { Movie } from '@/store/movies/movies.model';
 
-const baseUrl = 'http://www.omdbapi.com/?apikey=8ea39b15';
+const baseUrl = environment.apiUrl + '/movies' + environment.apiKey;
 
 @Injectable({
   providedIn: 'root',
